@@ -30,8 +30,8 @@ bool check(int s, int v, vector<int> adj[], vector<int>& vis){
     }
     
     bool isCycle(int v, vector<int> adj[]) {
-        vector<int> vis(v+1, 0);
-        for(int i = 1; i < v; i++){
+        vector<int> vis(v, 0);
+        for(int i = 0; i < v; i++){
             if(!vis[i]){
                 if(check(i, v, adj, vis)){
                     return true;
