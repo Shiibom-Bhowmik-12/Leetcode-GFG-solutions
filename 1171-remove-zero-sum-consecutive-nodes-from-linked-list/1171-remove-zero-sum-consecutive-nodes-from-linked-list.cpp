@@ -17,6 +17,9 @@ public:
         while(cur != NULL)
         {
             int sum=0;
+            
+            //calculating the sum
+            //if sum becomes 0 then we skip all the nodes so far traversed
             while(head != NULL)
             {
                 sum += head->val;
@@ -26,7 +29,9 @@ public:
                 }
                 head = head->next;
             }
-            //What is happening here???
+            
+            //moving on to the next node for performing the above operation 
+            //operation to check if there exists a sum that equals to zero
             cur = cur->next;
             if(cur != NULL)
             {
