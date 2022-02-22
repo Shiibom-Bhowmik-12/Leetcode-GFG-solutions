@@ -1,5 +1,5 @@
 # Insertion Sort for Singly Linked List
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a singly linked list, sort the list (in ascending order) using insertion sort algorithm.</span></p>
 
