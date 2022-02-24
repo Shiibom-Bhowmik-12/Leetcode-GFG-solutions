@@ -1,4 +1,4 @@
-//https://www.codingninjas.com/codestudio/problems/count-distinct-substrings_985292
+//https://www.codingninjas.com/codestudio/problems/complete-string_2687860
 
 struct Node {
     Node *links[26]; 
