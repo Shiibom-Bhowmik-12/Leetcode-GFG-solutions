@@ -108,15 +108,15 @@ class Solution
    //Function to find most frequent word in an array of strings.
    string mostFrequentWord(string arr[], int n) 
    {
-      trie t;
+      trie *t=new trie();
       for(int i = 0;i<n;i++){
-          t.insert(arr[i],i);
+          t->insert(arr[i],i);
       }
       int fre = -1;
       string ans = "";
       for(int i = 0;i<n;i++){
-          int x = t.countwordsequalto(arr[i]);
-          int c = t.get_starting_index(arr[i]);
+          int x = t->countwordsequalto(arr[i]);
+          int c = t->get_starting_index(arr[i]);
           if(x>fre){
               fre = x;
               ans = arr[i];
@@ -124,7 +124,7 @@ class Solution
           else if(x == fre){
 
 // for getting last occurrence of same frequency
-              int c2 = t.get_starting_index(ans);
+              int c2 = t->get_starting_index(ans);
               if(c>c2){
                   ans = arr[i];
               }
