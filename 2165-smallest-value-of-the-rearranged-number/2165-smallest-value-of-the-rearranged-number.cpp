@@ -17,16 +17,16 @@ public:
         else{           
             sort(s.begin()+1,s.end(),greater<char>());
             
-            if(s[1]=='0'){
-            for(char c=1;c<s.size();c++){
-               if(s[c]!=0){
-                   swap(s[1],s[c]);
-               }
-                else{
-                    break;
-                } 
-             }
-           }
+           //  if(s[1]=='0'){
+           //  for(char c=1;c<s.size();c++){
+           //     if(s[c]!=0){
+           //         swap(s[1],s[c]);
+           //     }
+           //      else{
+           //          break;
+           //      } 
+           //   }
+           // }
         }
         
         return stoll(s);
