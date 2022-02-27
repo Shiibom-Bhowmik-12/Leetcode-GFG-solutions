@@ -12,45 +12,26 @@
 class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
-        if(root==NULL){
-            return 0;
-        }
-        
-        queue<pair<TreeNode *,int>> q;
-        q.push({root,0});
-        int ans=INT_MIN;
-        
-        while(!q.empty())
-        {
-            int size=q.size();
-            int mini=q.front().second;
-            int last=0,first=0;
-            
-            for(int i=0;i<size;i++)
-            {
-                TreeNode *k=q.front().first;
-                int curr=q.front().second-mini;
-                q.pop();
-                
-                if(i==0){
-                    first=curr;
-                }
-                
-                if(i==size-1){
-                    last=curr;
-                }
-                
-                if(k->left){
-                    q.push({k->left,curr*2+1});
-                }
-                
-                if(k->right){
-                    q.push({k->right,curr*2+2});
-                }
-            }
-            ans=max(ans,last-first+1);
-        }
-        
-        return ans;
+ 	if (!root)return 0;
+	queue<pair<TreeNode*, unsigned long long int>> que;
+	que.push({root, 0});
+	int width = 0;
+	while (que.size() != 0) {
+		unsigned long long int left = que.front().second, right = 0;
+		int size = que.size();
+		while (size-- > 0) {
+			pair<TreeNode*, unsigned long long int> rNode = que.front();
+			que.pop();
+			right = rNode.second;
+			if (rNode.first->left) {
+				que.push({rNode.first->left, 2 * rNode.second + 1});
+			}
+			if (rNode.first->right) {
+				que.push({rNode.first->right, 2 * rNode.second + 2});
+			}
+		}
+		width = max(width, int(right - left + 1));
+	}
+	return width;
     }
 };
