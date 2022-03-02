@@ -8,29 +8,44 @@ using namespace std;
 class Solution
 {
 public:
-    long long countStrings(string S)
+    long long countStrings(string s)
     {
         // code here
-       long long count[26] = {0};
-       long long n = S.length();
-       for(int i=0;i<n;i++)
-       {
-           count[S[i]-'a']++;
-       }
-       
-       long long duplicates=0;
-       for(int i=0;i<26;i++)
-       {
-           duplicates+=count[i]*(count[i]-1)/2;
-       }
-       if(duplicates>0)
-       {
-           return 1+(n*(n-1))/2 - duplicates;
-       }
-       else
-       {
-           return (n*(n-1))/2;
-       }
+    /*
+        Initially considering that all the character are same in the string
+        so there will be (n) * (n - 1) / 2 distinct strings after swap.
+        e.g s = "abcde"
+        for s[0]->a --> We can swap it with  b, c, d, and e ==> So distinct strings = 4
+        for s[1]->b --> We can swap it with c, d, e ==> So distinct string = 3
+        for s[2]->c --> We can swap it with  d, e ==> So distinct string = 2
+        for s[3]->d --> We can swap it with e ==> So distinct string = 1
+        for s[4]->e --> We swapped e with all characters earlier so no need to swap ==> Dist. string = 0;
+        
+        hence we get the formula 
+            for string of length n of distinct character we can have
+        ==>  ((n) * (n - 1)) / 2 distinct string after swap.
+        */
+        
+        long long ans = (s.size() * (s.size() - 1)) / 2;
+        long long arr[26] = {0};
+        
+        int y = 0;
+        
+        //Storing the frequencies of character like how many times they are occuring.
+        for(char ch : s)
+            arr[ch - 'a']++;
+        
+        for(int i = 0; i < 26; i++){
+            if(arr[i] > 1){
+                //Subtracting the count of repeating string.
+                ans -= (arr[i] * (arr[i] - 1)) / 2;
+                y++;
+            }
+        }
+        
+        //Will add +1 in ans because we have to consider one string from all repeated string 
+        //as distinct string.
+        return y == 0 ? ans : ans + 1;
     }
 };
 
