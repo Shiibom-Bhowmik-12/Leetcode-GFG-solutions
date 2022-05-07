@@ -80,51 +80,44 @@ struct Node {
   }
 };
 */
+  Node* add_at_end(Node *ptr,int x){
+      ptr->next=(Node *)malloc(sizeof(Node));
+      ptr->next->data =x;
+      ptr->next->next=NULL;
+      ptr=ptr->next;
+      return ptr;
+  }
 //Function to merge two sorted linked list.
 Node* sortedMerge(Node* head1, Node* head2)  
 {  
-    // code here
-    if(head1==NULL){
-        return head2;
-    }
+    Node *temp1=head1;
+    Node *temp2 =head2;
+    Node *head = (Node *)malloc(sizeof(Node));
+    Node *ptr ;
+    bool chk=false;
+    while(temp1!=NULL&&temp2!=NULL){
     
-    if(head2==NULL){
-        return head1;
-    }
-    
-    Node *start=new Node(-1);
-    Node *end=start;
-    if(head1->data <= head2->data){
-        end->next=head1;
-        end=end->next;
-        head1=head1->next;
-    }
-    else{
-        end->next=head2;
-        end=end->next;
-        head2=head2->next;
-    }
-    
-    while(head1!=NULL and head2!=NULL){
-        if(head1->data <= head2->data){
-            end->next=head1;
-            end=end->next;
-            head1=head1->next;
+        if(temp1->data<=temp2->data){
+           if(!chk){ head->data=temp1->data;head->next=NULL;chk=true;ptr=head;}
+           else ptr =add_at_end(ptr,temp1->data);
+            temp1=temp1->next;
         }
         else{
-            end->next=head2;
-            end=end->next;
-            head2=head2->next;
+               if(!chk){ head->data=temp2->data;head->next=NULL;chk=true;ptr=head;}
+           else ptr=add_at_end(ptr,temp2->data);
+            temp2=temp2->next;
+            
         }
     }
     
-    if(head1==NULL){
-        end->next=head2;
+    while(temp1!=NULL){
+        ptr=add_at_end(ptr,temp1->data);
+        temp1=temp1->next;
     }
-    
-    if(head2==NULL){
-        end->next=head1;
+       
+    while(temp2!=NULL){
+        ptr=add_at_end(ptr,temp2->data);
+        temp2=temp2->next;
     }
-    
-    return start->next;
+    return head;
 }  
