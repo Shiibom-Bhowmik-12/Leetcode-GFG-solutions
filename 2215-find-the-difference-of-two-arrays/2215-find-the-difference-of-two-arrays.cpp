@@ -4,6 +4,10 @@ public:
         vector<vector<int>> res;
         
         unordered_set<int> st1,st2,check1,check2;
+        //check1 and check2 is used to check for the duplicates in the array
+        //duplicates here means the unique elements which are not present in nums1
+        //or nums2 for example, we need to insert he unique elements only once in
+        //the resultant array so we implement this.
         vector<int> list1;
         vector<int> list2;
         
