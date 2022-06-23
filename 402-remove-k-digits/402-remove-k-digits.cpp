@@ -2,7 +2,6 @@ class Solution {
 public:
     string removeKdigits(string num, int k) {
         stack<char> s;
-        int copy_k=k;
         
         for(int i=0;i<num.size();i++){
             while(!s.empty() and s.top()-'0'>num[i]-'0' and k!=0){
@@ -26,9 +25,9 @@ public:
         
         reverse(res.begin(),res.end());
         
-        if(res==""){
-            return "0";
-        }
+        // if(res==""){
+        //     return "0";
+        // }
         
         
         int i=0;
