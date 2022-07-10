@@ -20,27 +20,29 @@ public:
         return c;
     }
     
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        int length=len(head);
-        if(head==NULL or k<=1 or k>length){
+    ListNode *rev(ListNode *head,int k){
+        int l=len(head);
+        if(head==NULL or k<=1 or k>l){
             return head;
         }
         
         ListNode *dummy=NULL;
-        ListNode *temp=head;
-        ListNode *curr=head;
-        int c=1;
-        
-        while(curr!=NULL and c<=k){
-            ListNode *rep=curr;
-            curr=curr->next;
-            rep->next=NULL;
-            rep->next=dummy;
-            dummy=rep;
-            c++;
+        ListNode *temphead=head;
+        int i=1;
+        while(head!=NULL and i<=k){
+            ListNode *temp=head;
+            head=head->next;
+            temp->next=NULL;
+            temp->next=dummy;
+            dummy=temp;
+            i++;
         }
         
-        temp->next=reverseKGroup(curr,k);
+        temphead->next=rev(head,k);
         return dummy;
+    }
+    
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        return rev(head,k);
     }
 };
