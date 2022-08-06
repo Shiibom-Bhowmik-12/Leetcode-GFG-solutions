@@ -20,8 +20,8 @@ public:
                 mp[mod]=0;
             }
             
-            count+=mp[mod];
             mp[mod]++;
+            count+=mp[mod]-1;  
         }
         
         return count;
