@@ -1,23 +1,21 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        vector<int> ps,ng;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]<0){
-                ng.emplace_back(nums[i]);
+     vector<int> res(nums.size(),0);
+        
+        int i=0,j=1;
+        
+        for(int k=0;k<nums.size();k++){
+            if(nums[k]>0){
+                res[i]=nums[k];
+                i+=2;
             }
             else{
-                ps.emplace_back(nums[i]);
+                res[j]=nums[k];
+                j+=2;
             }
         }
         
-        vector<int> res;
-        //bool flag1=true,flag2=false;
-        for(int i=0;i<ps.size();i++){
-                res.emplace_back(ps[i]);
-                res.emplace_back(ng[i]);
-        }
-        
-        return res;
+        return res;        
     }
 };
